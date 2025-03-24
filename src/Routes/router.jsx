@@ -62,6 +62,7 @@ import SuccessPage from "../Pages/Authentication/SuccessPage";
 
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import Admin_home from "../Layout/Dashboard/Admin_home";
+import UserManagment from "../Layout/Dashboard/UserManagment";
 
 export const router = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ export const router = createBrowserRouter([
       {
         path: "admin_home",
         element: <Admin_home />, 
+      },
+      {
+        path: "user_managment",
+        element: <UserManagment/>
       }
       
     ],
