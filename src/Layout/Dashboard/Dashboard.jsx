@@ -160,6 +160,8 @@ import {
   ChevronsRight,
   BellDot,
 } from "lucide-react";
+import { MdOutlinePrivacyTip } from "react-icons/md";
+import { TbUserStar } from "react-icons/tb";
 
 export default function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -190,8 +192,8 @@ export default function Dashboard() {
     {
       items: [
         { name: "Dashboard", icon: <LayoutDashboard size={20} />, path: "/dashboard/admin_home" },
-        { name: "User Managment", icon: <Package size={20} />, path: "/dashboard/user_managment" },
-        { name: "Order", icon: <ShoppingCart size={20} />, path: "/orders" },
+        { name: "User Managment", icon: <TbUserStar size={20} />, path: "/dashboard/user_managment" },
+        { name: "Privacy", icon: <MdOutlinePrivacyTip size={20} />, path: "/dashboard/privacy" },
         { name: "Customers", icon: <Users size={20} />, path: "/customers" },
         { name: "Chat", icon: <MessageSquare size={20} />, path: "/chat", badge: "22" },
       ],

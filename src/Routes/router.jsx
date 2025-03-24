@@ -63,6 +63,7 @@ import SuccessPage from "../Pages/Authentication/SuccessPage";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import Admin_home from "../Layout/Dashboard/Admin_home";
 import UserManagment from "../Layout/Dashboard/UserManagment";
+import AddPrivacy from "../Layout/Dashboard/AddPrivacy";
 
 export const router = createBrowserRouter([
   {
@@ -110,6 +111,10 @@ export const router = createBrowserRouter([
       {
         path: "user_managment",
         element: <UserManagment/>
+      },
+      {
+        path: "privacy",
+        element: <AddPrivacy/>
       }
       
     ],
