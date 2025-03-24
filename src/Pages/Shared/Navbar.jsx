@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,12 +62,14 @@ const Navbar = () => {
 
         {/* Login Button */}
         <div className="hidden md:block">
-        <button
+      <Link to="/login">
+      <button
     className="bg-gradient-to-r from-[#2C3069] to-[#BB12C0] py-2 px-10 rounded-[8px] text-white font-semibold"
     aria-expanded={isOpen}
   >
     Login
   </button>
+      </Link>
         </div>
 
   

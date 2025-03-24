@@ -63,7 +63,7 @@ const Packages = () => {
                   Select
                 </button>
 
-                <p className="text-gray-600  text-xs mb-6">Contact us for more details</p>
+                <p className="text-gray-200  text-xs mb-6">Contact us for more details</p>
 
                 <div className="mb-4">
                   <div className="flex items-center mb-2">

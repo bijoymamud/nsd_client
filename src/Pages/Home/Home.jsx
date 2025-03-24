@@ -1,4 +1,6 @@
 import Banner from "./Banner"
+import Contact from "./Contact"
+import Faq from "./Faq"
 import Optimize from "./Optimize.JSX"
 import Packages from "./Packages"
 import Salesforce from "./Salesforce"
@@ -11,6 +13,8 @@ const Home = () => {
          <Optimize/> 
          <Salesforce/>
          <Packages/>
+         <Contact/>
+         <Faq/>
 
     </div>
   )
