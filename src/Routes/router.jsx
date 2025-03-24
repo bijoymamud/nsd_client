@@ -50,7 +50,6 @@
 
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
-import DashboardLayout from "../Layout/DashboardLayout"; // New Dashboard Layout
 import Home from "../Pages/Home/Home";
 import Register from "../Pages/Authentication/Register";
 import Login from "../Pages/Authentication/Login";
@@ -60,9 +59,9 @@ import ResetPassword from "../Pages/Authentication/ResetPassword";
 import SuccessPage from "../Pages/Authentication/SuccessPage";
 
 // Dashboard Pages
-import DashboardHome from "../Pages/Dashboard/DashboardHome";
-import Profile from "../Pages/Dashboard/Profile";
-import Settings from "../Pages/Dashboard/Settings";
+
+import Dashboard from "../Layout/Dashboard/Dashboard";
+import Admin_home from "../Layout/Dashboard/Admin_home";
 
 export const router = createBrowserRouter([
   {
@@ -101,11 +100,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />, 
+    element: <Dashboard />, 
     children: [
       {
-        path: "/dashboard",
-        element: <DashboardHome />, 
+        path: "admin_home",
+        element: <Admin_home />, 
       }
       
     ],
