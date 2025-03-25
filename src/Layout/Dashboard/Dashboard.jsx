@@ -213,7 +213,7 @@ export default function Dashboard() {
         { name: "Dashboard", icon: <LayoutDashboard size={20} />, path: "/dashboard/user_home" },
         { name: "File Management", icon: <img src="https://i.ibb.co.com/JRWg9Zdx/hugeicons-time-management.png" alt="File Management" />, path: "/dashboard/file_managment" },
         { name: "Company Profile", icon: <FaRegUser size={20} />, path: "/dashboard/company_profile" },
-        { name: "Chatbot", icon: <TbMessageChatbot size={20} />, path: "/dashboard/chatbot" },
+        { name: "Chatbot", icon: <TbMessageChatbot size={20} />, path: "/dashboard/chat" },
       ],
     },
   ];

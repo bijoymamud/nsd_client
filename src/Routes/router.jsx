@@ -122,6 +122,7 @@ import AddFaq from "../Layout/Dashboard/AddFaq";
 import UserHome from "../Layout/Dashboard/User_home";
 import CompanyProfile from "../Layout/Dashboard/CompanyProfile";
 import FileManagment from "../Layout/Dashboard/FileManagment";
+import Chatbot from "../Layout/Dashboard/Chat";
 
 export const router = createBrowserRouter([
   {
@@ -204,10 +205,10 @@ export const router = createBrowserRouter([
         path: "company_profile",
         element: <CompanyProfile/>, // Placeholder; replace with actual component
       },
-      // {
-      //   path: "chatbot",
-      //   element: <div>Chatbot Page</div>, // Placeholder; replace with actual component
-      // },
+      {
+        path: "chat",
+        element: <Chatbot/>, // Placeholder; replace with actual component
+      },
     ],
   },
 ]);
