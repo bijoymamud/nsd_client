@@ -120,6 +120,8 @@ import AddPrivacy from "../Layout/Dashboard/AddPrivacy";
 import AddTermsConditions from "../Layout/Dashboard/AddTermsConditions";
 import AddFaq from "../Layout/Dashboard/AddFaq";
 import UserHome from "../Layout/Dashboard/User_home";
+import CompanyProfile from "../Layout/Dashboard/CompanyProfile";
+import FileManagment from "../Layout/Dashboard/FileManagment";
 
 export const router = createBrowserRouter([
   {
@@ -187,21 +189,21 @@ export const router = createBrowserRouter([
 
   // User Dashboard
   {
-    path: "/user_dashboard",
+    path: "/dashboard",
     element: <Dashboard />,
     children: [
       {
         path: "user_home", 
         element: <UserHome />,
       },
-      // {
-      //   path: "file_management",
-      //   element: <div>File Management Page</div>, // Placeholder; replace with actual component
-      // },
-      // {
-      //   path: "company_profile",
-      //   element: <div>Company Profile Page</div>, // Placeholder; replace with actual component
-      // },
+      {
+        path: "file_managment",
+        element: <FileManagment/>, 
+      },
+      {
+        path: "company_profile",
+        element: <CompanyProfile/>, // Placeholder; replace with actual component
+      },
       // {
       //   path: "chatbot",
       //   element: <div>Chatbot Page</div>, // Placeholder; replace with actual component
