@@ -1,50 +1,74 @@
-// import { useState } from "react";
+
+
+// import { useState, useEffect } from "react";
 // import { Outlet, NavLink } from "react-router-dom";
 // import {
 //   LayoutDashboard,
-//   Package,
-//   ShoppingCart,
-//   Users,
-//   MessageSquare,
-//   Mail,
-//   BarChart2,
-//   Share2,
-//   Activity,
-//   User,
-//   Users2,
-//   Settings,
 //   ChevronsLeft,
 //   ChevronsRight,
+//   BellDot,
 // } from "lucide-react";
+// import { MdOutlinePrivacyTip } from "react-icons/md";
+// import { TbMessageChatbot, TbUserStar } from "react-icons/tb";
+// import { LuNotepadText } from "react-icons/lu";
+// import { ImQuestion } from "react-icons/im";
+// import { FaRegUser } from "react-icons/fa";
+
+// // Static role (for demonstration, set this to "admin" or "user")
+// const USER_ROLE = "User"; // Change to "user" to switch to user view
 
 // export default function Dashboard() {
 //   const [isCollapsed, setIsCollapsed] = useState(false);
+//   const [currentDate, setCurrentDate] = useState("");
 
-//   const menuItems = [
+//   const formatDate = () => {
+//     const date = new Date();
+//     const dayName = date.toLocaleString("en-US", { weekday: "long" });
+//     const day = date.getDate();
+//     const month = date.toLocaleString("en-US", { month: "long" });
+//     const year = date.getFullYear();
+//     return `${dayName} ${day} ${month}, ${year}`;
+//   };
+
+//   useEffect(() => {
+//     setCurrentDate(formatDate());
+//     const interval = setInterval(() => {
+//       setCurrentDate(formatDate());
+//     }, 60000);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   // Menu items for admin
+//   const adminMenuItems = [
 //     {
 //       items: [
-//         { name: "Dashboard", icon: <LayoutDashboard size={20} />, path: "/admin_home" },
-//         { name: "Products", icon: <Package size={20} />, path: "/products" },
-//         { name: "Order", icon: <ShoppingCart size={20} />, path: "/orders" },
-//         { name: "Customers", icon: <Users size={20} />, path: "/customers" },
-//         { name: "Chat", icon: <MessageSquare size={20} />, path: "/chat", badge: "22" },
-//       ],
-//     },
-//     {
-//       items: [
-//         { name: "Email", icon: <Mail size={20} />, path: "/email" },
-//         { name: "Analytics", icon: <BarChart2 size={20} />, path: "/analytics" },
-//         { name: "Integration", icon: <Share2 size={20} />, path: "/integration" },
-//         { name: "Performance", icon: <Activity size={20} />, path: "/performance" },
-//       ],
-//     },
-//     {
-//       items: [
-//         { name: "Account", icon: <User size={20} />, path: "/account" },
-//         { name: "Members", icon: <Users2 size={20} />, path: "/members" },
+//         { name: "Dashboard", icon: <LayoutDashboard size={20} />, path: "/dashboard/admin_home" },
+//         { name: "User Management", icon: <TbUserStar size={20} />, path: "/dashboard/user_management" },
+//         { name: "Privacy", icon: <MdOutlinePrivacyTip size={20} />, path: "/dashboard/privacy" },
+//         { name: "Terms & Conditions", icon: <LuNotepadText size={20} />, path: "/dashboard/terms_conditions" },
+//         { name: "FAQ", icon: <ImQuestion size={20} />, path: "/dashboard/faq" },
 //       ],
 //     },
 //   ];
+
+//   // Menu items for user
+//   const userMenuItems = [
+//     {
+//       items: [
+//         { name: "Dashboard", icon: <LayoutDashboard size={20} />, path: "/user_dashboard/user_home" },
+//         { name: "File Management", icon: <img src="https://i.ibb.co.com/JRWg9Zdx/hugeicons-time-management.png" alt="File Management" />, path: "/user_dashboard/file_management" },
+//         { name: "Company Profile", icon: <FaRegUser size={20} />, path: "/user_dashboard/company_profile" },
+//         { name: "Chatbot", icon: <TbMessageChatbot size={20} />, path: "/user_dashboard/chatbot" },
+//       ],
+//     },
+//   ];
+
+//   // Select menu items based on role
+//   const menuItems = USER_ROLE === "admin" ? adminMenuItems : userMenuItems;
+
+//   // User-specific header info
+//   const headerInfo = USER_ROLE === "admin" ? "Hi, Admin Jones" : "Hi, User Jones";
 
 //   return (
 //     <div className="flex h-screen bg-[#606060]">
@@ -52,14 +76,12 @@
 //       <aside
 //         className={`${
 //           isCollapsed ? "w-20" : "w-72"
-//         } bg-[#111014] border-r border-[#111014] shadow-gray-900  transition-all duration-500 ease-in-out shadow-lg`}
+//         } bg-[#111014] border-r border-[#111014] shadow-gray-900 transition-all duration-500 ease-in-out shadow-lg`}
 //       >
-//         {/* Logo */}
-//         <div className="py-10 flex items-center px-4   overflow-hidden">
-//         <img src="https://i.ibb.co.com/3YMJWXhQ/Nexus-Vision-LOGO-Aadf-2-1.png" alt="" />
+//         <div className="py-10 flex items-center px-4 overflow-hidden">
+//           <img src="https://i.ibb.co.com/3YMJWXhQ/Nexus-Vision-LOGO-Aadf-2-1.png" alt="Nexus Vision Logo" />
 //         </div>
 
-//         {/* Navigation */}
 //         <nav className="p-4">
 //           {menuItems.map((section, idx) => (
 //             <div key={idx} className="mb-8">
@@ -70,7 +92,7 @@
 //                       to={item.path}
 //                       className={({ isActive }) =>
 //                         `flex items-center gap-3 px-3 py-2 text-[#CBCCD2] rounded-lg group relative transition-all duration-300 ${
-//                           isActive ? "bg-[#a11ed4] shadow-sm " : "hover:bg-[#a11ed4] hover:shadow-sm"
+//                           isActive ? "bg-[#a11ed4] shadow-sm" : "hover:bg-[#a11ed4] hover:shadow-sm"
 //                         }`
 //                       }
 //                     >
@@ -84,15 +106,6 @@
 //                       >
 //                         {item.name}
 //                       </span>
-//                       {item.badge && (
-//                         <span
-//                           className={`ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full transform transition-all duration-500 shadow-sm ${
-//                             isCollapsed ? "opacity-0 scale-0" : "opacity-100 scale-100"
-//                           }`}
-//                         >
-//                           {item.badge}
-//                         </span>
-//                       )}
 //                     </NavLink>
 //                   </li>
 //                 ))}
@@ -105,33 +118,33 @@
 //       {/* Main Content */}
 //       <div className="flex-1 flex flex-col overflow-hidden">
 //         {/* Navbar */}
-//         <header className="h-16 bg-[#16141A]  py-10 shadow-md">
-//           <div className="h-full px-4 flex items-center justify-between">
+//         <header className="h-16 bg-[#16141A] py-10 shadow-md">
+//           <div className="h-full flex items-center justify-between">
 //             <div className="flex items-center gap-4">
 //               <button
 //                 onClick={() => setIsCollapsed(!isCollapsed)}
-//                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-300 shadow-sm hover:shadow-md"
+//                 className="p-2 hover:bg-gray-700 text-[#DBDFEA] bg-[#2c2933] rounded-full transition-colors duration-300 shadow-sm hover:shadow-md"
 //               >
 //                 {isCollapsed ? <ChevronsRight size={20} /> : <ChevronsLeft size={20} />}
 //               </button>
-//               {/* live date */}
-
-//               <h1>Saturday <span>25 july, 2025</span></h1>
-
-
+//               <h1 className="text-[#DBDFEA] text-lg font-medium">
+//                 {currentDate || "Loading date..."}
+//               </h1>
 //             </div>
-//             <div className="flex items-center gap-4">
-//               <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-300 shadow-sm hover:shadow-md">
-//                 <Settings size={20} />
-//               </button>
-//               <button className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors duration-300 shadow-md hover:shadow-lg">
-//                 Export
-//               </button>
+//             <div className="flex items-center gap-4 pr-10">
+//               <div className="flex items-center space-x-10">
+//                 <BellDot size={28} className="text-[#DBDFEA]" />
+//                 <h1 className="text-[#DBDFEA]">{headerInfo}</h1>
+//                 <img
+//                   className="w-10 h-10 rounded-full object-cover shadow-md shadow-[#2c2933] cursor-pointer"
+//                   src="https://i.ibb.co.com/XvMzTKd/Group-1000004524.png"
+//                   alt="Profile"
+//                 />
+//               </div>
 //             </div>
 //           </div>
 //         </header>
 
-//         {/* Main Content Area */}
 //         <main className="flex-1 overflow-auto p-6 bg-[#1D1B22]">
 //           <Outlet />
 //         </main>
@@ -145,74 +158,71 @@ import { useState, useEffect } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
-  Package,
-  ShoppingCart,
-  Users,
-  MessageSquare,
-  Mail,
-  BarChart2,
-  Share2,
-  Activity,
-  User,
-  Users2,
-  Settings,
   ChevronsLeft,
   ChevronsRight,
   BellDot,
 } from "lucide-react";
 import { MdOutlinePrivacyTip } from "react-icons/md";
-import { TbUserStar } from "react-icons/tb";
+import { TbMessageChatbot, TbUserStar } from "react-icons/tb";
+import { LuNotepadText } from "react-icons/lu";
+import { ImQuestion } from "react-icons/im";
+import { FaRegUser } from "react-icons/fa";
+
+// Static role (for demonstration, set this to "admin" or "user")
+const USER_ROLE = "user"; // Change to "admin" to switch to admin view
 
 export default function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
 
-  // Function to format the current date
   const formatDate = () => {
     const date = new Date();
-    const dayName = date.toLocaleString("en-US", { weekday: "long" }); // e.g., "Saturday"
-    const day = date.getDate(); // e.g., 25
-    const month = date.toLocaleString("en-US", { month: "long" }); // e.g., "July"
-    const year = date.getFullYear(); // e.g., 2025
+    const dayName = date.toLocaleString("en-US", { weekday: "long" });
+    const day = date.getDate();
+    const month = date.toLocaleString("en-US", { month: "long" });
+    const year = date.getFullYear();
     return `${dayName} ${day} ${month}, ${year}`;
   };
 
-  // Update the date on component mount
   useEffect(() => {
     setCurrentDate(formatDate());
-    // Optional: Update the date every minute to keep it real-time
     const interval = setInterval(() => {
       setCurrentDate(formatDate());
-    }, 60000); // Update every 60 seconds
+    }, 60000);
 
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval);
   }, []);
 
-  const menuItems = [
+  // Menu items for admin
+  const adminMenuItems = [
     {
       items: [
         { name: "Dashboard", icon: <LayoutDashboard size={20} />, path: "/dashboard/admin_home" },
-        { name: "User Managment", icon: <TbUserStar size={20} />, path: "/dashboard/user_managment" },
+        { name: "User Management", icon: <TbUserStar size={20} />, path: "/dashboard/user_management" },
         { name: "Privacy", icon: <MdOutlinePrivacyTip size={20} />, path: "/dashboard/privacy" },
-        { name: "Customers", icon: <Users size={20} />, path: "/customers" },
-        { name: "Chat", icon: <MessageSquare size={20} />, path: "/chat", badge: "22" },
-      ],
-    },
-    {
-      items: [
-        { name: "Email", icon: <Mail size={20} />, path: "/email" },
-        { name: "Analytics", icon: <BarChart2 size={20} />, path: "/analytics" },
-        { name: "Integration", icon: <Share2 size={20} />, path: "/integration" },
-        { name: "Performance", icon: <Activity size={20} />, path: "/performance" },
-      ],
-    },
-    {
-      items: [
-        { name: "Account", icon: <User size={20} />, path: "/account" },
-        { name: "Members", icon: <Users2 size={20} />, path: "/members" },
+        { name: "Terms & Conditions", icon: <LuNotepadText size={20} />, path: "/dashboard/terms_conditions" },
+        { name: "FAQ", icon: <ImQuestion size={20} />, path: "/dashboard/faq" },
       ],
     },
   ];
+
+  // Menu items for user
+  const userMenuItems = [
+    {
+      items: [
+        { name: "Dashboard", icon: <LayoutDashboard size={20} />, path: "/user_dashboard/user_home" },
+        { name: "File Management", icon: <img src="https://i.ibb.co.com/JRWg9Zdx/hugeicons-time-management.png" alt="File Management" />, path: "/user_dashboard/file_management" },
+        { name: "Company Profile", icon: <FaRegUser size={20} />, path: "/user_dashboard/company_profile" },
+        { name: "Chatbot", icon: <TbMessageChatbot size={20} />, path: "/user_dashboard/chatbot" },
+      ],
+    },
+  ];
+
+  // Select menu items based on role
+  const menuItems = USER_ROLE === "admin" ? adminMenuItems : userMenuItems;
+
+  // User-specific header info
+  const headerInfo = USER_ROLE === "admin" ? "Hi, Admin Jones" : "Hi, User Jones";
 
   return (
     <div className="flex h-screen bg-[#606060]">
@@ -222,12 +232,10 @@ export default function Dashboard() {
           isCollapsed ? "w-20" : "w-72"
         } bg-[#111014] border-r border-[#111014] shadow-gray-900 transition-all duration-500 ease-in-out shadow-lg`}
       >
-        {/* Logo */}
         <div className="py-10 flex items-center px-4 overflow-hidden">
           <img src="https://i.ibb.co.com/3YMJWXhQ/Nexus-Vision-LOGO-Aadf-2-1.png" alt="Nexus Vision Logo" />
         </div>
 
-        {/* Navigation */}
         <nav className="p-4">
           {menuItems.map((section, idx) => (
             <div key={idx} className="mb-8">
@@ -252,15 +260,6 @@ export default function Dashboard() {
                       >
                         {item.name}
                       </span>
-                      {item.badge && (
-                        <span
-                          className={`ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full transform transition-all duration-500 shadow-sm ${
-                            isCollapsed ? "opacity-0 scale-0" : "opacity-100 scale-100"
-                          }`}
-                        >
-                          {item.badge}
-                        </span>
-                      )}
                     </NavLink>
                   </li>
                 ))}
@@ -278,29 +277,28 @@ export default function Dashboard() {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                className="p-2 hover:bg-gray-700  text-[#DBDFEA] bg-[#2c2933] rounded-full transition-colors duration-300 shadow-sm hover:shadow-md"
+                className="p-2 hover:bg-gray-700 text-[#DBDFEA] bg-[#2c2933] rounded-full transition-colors duration-300 shadow-sm hover:shadow-md"
               >
                 {isCollapsed ? <ChevronsRight size={20} /> : <ChevronsLeft size={20} />}
               </button>
-              {/* Live Date */}
               <h1 className="text-[#DBDFEA] text-lg font-medium">
                 {currentDate || "Loading date..."}
               </h1>
             </div>
             <div className="flex items-center gap-4 pr-10">
-      <div className="flex items-center space-x-10">
-      <BellDot size={28}  className="text-[#DBDFEA]"/>
-        <h1 className="text-[#DBDFEA]">Hi, Jones</h1>
-      <img 
-         className="w-10 h-10 rounded-full object-cover shadow-md shadow-[#2c2933] cursor-pointer"
-         src="https://i.ibb.co.com/XvMzTKd/Group-1000004524.png" alt="" />
-      </div>
-             
+              <div className="flex items-center space-x-10">
+                <BellDot size={28} className="text-[#DBDFEA]" />
+                <h1 className="text-[#DBDFEA]">{headerInfo}</h1>
+                <img
+                  className="w-10 h-10 rounded-full object-cover shadow-md shadow-[#2c2933] cursor-pointer"
+                  src="https://i.ibb.co.com/XvMzTKd/Group-1000004524.png"
+                  alt="Profile"
+                />
+              </div>
             </div>
           </div>
         </header>
 
-        {/* Main Content Area */}
         <main className="flex-1 overflow-auto p-6 bg-[#1D1B22]">
           <Outlet />
         </main>

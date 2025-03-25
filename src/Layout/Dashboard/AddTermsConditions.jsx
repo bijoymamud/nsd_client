@@ -5,10 +5,9 @@
 
 import React, { useState } from "react";
 import { BiSolidEdit } from "react-icons/bi";
-import { FaPencilAlt } from "react-icons/fa"; // Using FaPencilAlt for the edit icon
 
-const PrivacyEditor = () => {
-  // Initial content for the privacy section
+const AddTermsConditions = () => {
+
   const initialContent = [
   "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum nam dolorum, architecto hic maiores assumenda pariatur corporis aperiam ut eaque rem. Molestias earum, doloribus magnam totam ullam sed distinctio qui numquam laboriosam quia recusandae incidunt rem nemo laborum. Cum, excepturi. Aperiam eos iusto voluptatem exercitationem voluptate doloribus, dolore voluptates necessitatibus quaerat dignissimos corrupti laboriosam quis saepe error, similique eum voluptatum officia nulla neque numquam. Quasi distinctio fugiat eaque temporibus dicta! Expedita animi et iste blanditiis? Praesentium nesciunt pariatur necessitatibus. Ratione, atque necessitatibus vel iste repudiandae natus accusamus voluptate qui quas veniam nemo quisquam similique assumenda quod excepturi ipsam voluptas explicabo!"
   ];
@@ -17,30 +16,26 @@ const PrivacyEditor = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState("");
 
-  // Handle edit button click
+
   const handleEditClick = () => {
     setIsEditing(true);
-    // Join the content array into a single string with newlines between paragraphs
     setEditedContent(content.join("\n\n"));
   };
 
-  // Handle content change in textarea
   const handleContentChange = (value) => {
     setEditedContent(value);
   };
 
-  // Handle save button click
   const handleSave = () => {
-    // Split the edited content back into an array of paragraphs
     const updatedContent = editedContent
       .split("\n\n")
       .map((paragraph) => paragraph.trim())
-      .filter((paragraph) => paragraph.length > 0); // Remove empty paragraphs
+      .filter((paragraph) => paragraph.length > 0); 
     setContent(updatedContent);
     setIsEditing(false);
   };
 
-  // Handle cancel button click
+
   const handleCancel = () => {
     setEditedContent("");
     setIsEditing(false);
@@ -48,9 +43,8 @@ const PrivacyEditor = () => {
 
   return (
     <div className="bg-[#16141A] text-[#CBCCD2] p-6 rounded-lg">
-      {/* Header with Title and Edit Button */}
       <div className="flex justify-start items-center gap-10 mb-4">
-        <h2 className="text-2xl font-semibold">Privacy</h2>
+        <h2 className="text-2xl font-semibold">Terms and Conditions</h2>
         {!isEditing && (
           <button
             onClick={handleEditClick}
@@ -62,10 +56,8 @@ const PrivacyEditor = () => {
         )}
       </div>
 
-      {/* Content */}
       <div className="space-y-4">
         {isEditing ? (
-          // Editable Mode with a Single Textarea
           <>
             <textarea
               value={editedContent}
@@ -74,7 +66,6 @@ const PrivacyEditor = () => {
               rows={15}
               placeholder="Enter your privacy content here..."
             />
-            {/* Save and Cancel Buttons */}
             <div className="flex justify-end gap-2 mt-4">
               <button
                 onClick={handleCancel}
@@ -91,10 +82,9 @@ const PrivacyEditor = () => {
             </div>
           </>
         ) : (
-          // View Mode
           content.map((paragraph, index) => (
             <div key={index} className="flex gap-2">
-              {/* <span className="text-[#CBCCD2]">{index + 1}.</span> */}
+              <span className="text-[#CBCCD2]">{index + 1}.</span>
               <p className="text-[#CBCCD2]">{paragraph}</p>
             </div>
           ))
@@ -104,4 +94,4 @@ const PrivacyEditor = () => {
   );
 };
 
-export default PrivacyEditor;
+export default AddTermsConditions;
