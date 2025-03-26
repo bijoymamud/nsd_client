@@ -46,9 +46,10 @@ const Packages = () => {
           {/* Free User */}
           <div className="bg-[#251729]  py-10">
             <div className="overflow-hidden relative">
-              <div className="bg-[#6B2C7A]  py-3 px-6 relative w-2/3 rounded-r-lg">
-                <h3 className="text-white  font-medium">Free User</h3>
-              </div>
+            <div className="py-3 px-6 relative w-2/3 rounded-r-lg bg-[url('https://i.ibb.co.com/CpJGyt91/Vector-64.png')] bg-cover bg-center">
+  <h3 className="text-white font-medium">Free User</h3>
+</div>
+
 
               <div className="p-6">
                 <div className="mb-6">
@@ -66,10 +67,10 @@ const Packages = () => {
                 <p className="text-gray-200  text-xs mb-6">Contact us for more details</p>
 
                 <div className="mb-4">
-                  <div className="flex items-center mb-2">
+                <div className="flex items-center mb-2">
                     <span className="text-white  font-medium">Features</span>
-                    <div className="ml-2 w-5 h-5 rounded-full bg-blue-300  flex items-center justify-center">
-                      <span className="text-black font-semibold text-base">
+                    <div className="ml-2 w-5 h-5 rounded-full bg-[#2A2748] text-[#D0CDEF] flex items-center justify-center">
+                      <span className="text-[#D0CDEF] font-semibold text-base">
                         <GoCheck />
                       </span>
                     </div>
@@ -88,9 +89,9 @@ const Packages = () => {
           {/* Paid User */}
           <div className="bg-[#251729] py-10">
             <div className="overflow-hidden relative">
-              <div className=" bg-[#6B2C7A] py-3 px-6 relative w-2/3 rounded-r-lg">
-                <h3 className="text-white  font-medium">Paid User</h3>
-              </div>
+            <div className="py-3 px-6 relative w-2/3 rounded-r-lg bg-[url('https://i.ibb.co.com/CpJGyt91/Vector-64.png')] bg-cover bg-center">
+  <h3 className="text-white font-medium">Paid User</h3>
+</div>
 
               <div className="p-6">
                 <div className="mb-6">
@@ -108,10 +109,10 @@ const Packages = () => {
                 <p className="text-gray-200  text-xs mb-6">Contact us for more details</p>
 
                 <div className="mb-4">
-                  <div className="flex items-center mb-2">
+                <div className="flex items-center mb-2">
                     <span className="text-white  font-medium">Features</span>
-                    <div className="ml-2 w-5 h-5 rounded-full bg-blue-300  flex items-center justify-center">
-                      <span className="text-black font-semibold text-base">
+                    <div className="ml-2 w-5 h-5 rounded-full bg-[#2A2748] text-[#D0CDEF] flex items-center justify-center">
+                      <span className="text-[#D0CDEF] font-semibold text-base">
                         <GoCheck />
                       </span>
                     </div>
@@ -130,9 +131,9 @@ const Packages = () => {
           {/* Enterprise Users */}
           <div className="bg-[#251729] py-10">
             <div className="overflow-hidden relative">
-              <div className="bg-[#6B2C7A]  py-3 px-6 relative w-2/3 rounded-r-lg">
-                <h3 className="text-white  font-medium">Enterprise Users</h3>
-              </div>
+            <div className="py-3 px-6 relative w-2/3 rounded-r-lg bg-[url('https://i.ibb.co.com/CpJGyt91/Vector-64.png')] bg-cover bg-center">
+  <h3 className="text-white font-medium">Enterprise User</h3>
+</div>
 
               <div className="p-6">
                 <div className="mb-6">
@@ -152,8 +153,8 @@ const Packages = () => {
                 <div className="mb-4">
                   <div className="flex items-center mb-2">
                     <span className="text-white  font-medium">Features</span>
-                    <div className="ml-2 w-5 h-5 rounded-full bg-blue-300 flex items-center justify-center">
-                      <span className="text-black font-semibold text-base">
+                    <div className="ml-2 w-5 h-5 rounded-full bg-[#2A2748] text-[#D0CDEF] flex items-center justify-center">
+                      <span className="text-[#D0CDEF] font-semibold text-base">
                         <GoCheck />
                       </span>
                     </div>

@@ -208,18 +208,20 @@ const Admin_home = () => {
         <div className="bg-[#16141A] rounded-[15px] shadow-md p-6">
           <h2 className="text-[#DBDFEA] text-lg font-medium text-center mb-4">Upgrades Per Day</h2>
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={upgradesData}>
-                <CartesianGrid stroke="#2c2933" strokeDasharray="3 3" />
-                <XAxis dataKey="day" stroke="#DBDFEA" />
-                <YAxis stroke="#DBDFEA" />
-                <Tooltip
-                  contentStyle={{ backgroundColor: "#2c2933", border: "none", color: "#ffff" }}
-                />
-                <Bar dataKey="upgrades" fill="#44179D" radius={[5, 5, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+  <ResponsiveContainer width="100%" height="100%">
+    <BarChart data={upgradesData}>
+      <CartesianGrid stroke="#2c2933" strokeDasharray="3 3" />
+      <XAxis dataKey="day" stroke="#DBDFEA" />
+      <YAxis stroke="#DBDFEA" />
+      <Tooltip
+        contentStyle={{ backgroundColor: "#2c2933", border: "#DBDFEA", color: "#ffff" }}
+        wrapperStyle={{ background: "transparent" }}
+      />
+      <Bar dataKey="upgrades" fill="#44179D" radius={[5, 5, 0, 0]} barSize={30} />
+    </BarChart>
+  </ResponsiveContainer>
+</div>
+
         </div>
       </div>
 
@@ -228,7 +230,7 @@ const Admin_home = () => {
   <div className="overflow-x-auto">
     <table className="table w-full">
       <thead>
-        <tr className="bg-gradient-to-r from-[#811D9D]/90 to-[#2D2F6A] text-[#DBDFEA] rounded-t-xl">
+        <tr className="bg-gradient-to-r from-[#811D9D]/50 to-[#2D2F6A] text-[#DBDFEA] text-base rounded-t-xl">
           <th className="py-3 px-4 first:rounded-tl-xl last:rounded-tr-xl ">Company Name</th>
           <th className="py-3 px-4">Subscriber ID</th>
           <th className="py-3 px-4">Phone Number</th>

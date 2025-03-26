@@ -1,8 +1,6 @@
 
-
-
 import React, { useState, useEffect } from "react";
-import { FaAngleRight, FaPlus } from "react-icons/fa";
+import { FaAngleRight, FaPlus, FaSearch } from "react-icons/fa";
 import { FaTrashCan } from "react-icons/fa6";
 import { LuSquareUserRound } from "react-icons/lu";
 
@@ -19,7 +17,7 @@ const UserManagement = () => {
 
   const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
   const [isAddBusinessModalOpen, setIsAddBusinessModalOpen] = useState(false);
-  const [isBusinessDropdownOpen, setIsBusinessDropdownOpen] = useState(false);
+  const [selectedBusiness, setSelectedBusiness] = useState("Restaurant business"); // New state for selected business
   const [businessCategories, setBusinessCategories] = useState(["Restaurant", "Car business"]);
   const [dropdownCategories] = useState(["Restaurant Industry", "Car Industry", "Beverage Industry"]);
   const [newCategory, setNewCategory] = useState("");
@@ -33,18 +31,16 @@ const UserManagement = () => {
   });
   const [errors, setErrors] = useState({});
 
-  // Toggle modals and dropdown
+  // Toggle modals
   const toggleAddUserModal = () => setIsAddUserModalOpen(!isAddUserModalOpen);
   const toggleAddBusinessModal = () => setIsAddBusinessModalOpen(!isAddBusinessModalOpen);
-  const toggleBusinessDropdown = () => setIsBusinessDropdownOpen(!isBusinessDropdownOpen);
 
-  // Close modals and dropdown on Esc key press
+  // Close modals on Esc key press
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.key === "Escape") {
         setIsAddUserModalOpen(false);
         setIsAddBusinessModalOpen(false);
-        setIsBusinessDropdownOpen(false);
       }
     };
     window.addEventListener("keydown", handleEsc);
@@ -96,6 +92,11 @@ const UserManagement = () => {
     }
   };
 
+  // Handle selecting a business category from the dropdown
+  const handleSelectBusiness = (category) => {
+    setSelectedBusiness(category);
+  };
+
   return (
     <section className="relative">
       {/* Header Section */}
@@ -107,30 +108,21 @@ const UserManagement = () => {
           Business <FaPlus />
         </button>
 
-        <div className="relative">
-          <button
-            onClick={toggleBusinessDropdown}
-            className="btn bg-[#16141A] border-none shadow-none text-[#CBCCD2] rounded-md flex items-center"
-          >
-            Restaurant business <FaAngleRight />
-          </button>
-          {isBusinessDropdownOpen && (
-            <div className="absolute top-12 right-0 bg-[#16141A] text-[#CBCCD2] rounded-md shadow-lg w-48 z-10">
-              {dropdownCategories.map((category, index) => (
-                <div
-                  key={index}
-                  className="px-4 py-2 hover:bg-[#1F1E3A] cursor-pointer border-b border-gray-700 last:border-b-0"
-                  onClick={() => {
-                    toggleBusinessDropdown();
-                    // Add logic here to filter users by category if needed
-                    console.log(`Selected: ${category}`);
-                  }}
-                >
-                  {category}
-                </div>
-              ))}
-            </div>
-          )}
+        <div className="dropdown dropdown-end">
+          <div tabIndex={0} role="button" className="btn bg-[#16141A] border-none shadow-none text-[#CBCCD2] rounded-md">
+            {selectedBusiness} <FaAngleRight size={20} />
+          </div>
+          <ul tabIndex={0} className="dropdown-content menu bg-gray-900 text-[#CBCCD2] rounded-box z-1 w-48 border border-gray-700 p-2 shadow-sm">
+            {dropdownCategories.map((category) => (
+              <li
+                key={category}
+                className="hover:bg-gray-600"
+                onClick={() => handleSelectBusiness(category)}
+              >
+                <a>{category}</a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
@@ -144,11 +136,10 @@ const UserManagement = () => {
           >
             Add a user <FaPlus />
           </button>
-          <input
-            type="text"
-            placeholder="Search by phone number or name"
-            className="input input-bordered w-full max-w-xs bg-[#16141A] shadow-none text-white"
-          />
+          <label className="input bg-[#16141A] px-10 text-[#CBCCD2] shadow-none">
+            <input type="search" className="grow" placeholder="Search by phone number or name" />
+            <FaSearch className="text-[#CBCCD2]" />
+          </label>
         </div>
       </div>
 
@@ -157,7 +148,7 @@ const UserManagement = () => {
         <div>
           <table className="table w-full text-[#CBCCD2]">
             <thead className="bg-[#1F1E3A] text-[#CBCCD2] rounded-t-xl">
-              <tr>
+              <tr className="text-base">
                 <th>Subscriber Name</th>
                 <th>Customer ID</th>
                 <th>Cell number</th>
@@ -183,17 +174,17 @@ const UserManagement = () => {
                   <td>
                     <div className="flex items-center gap-2">
                       <select
-                        className={`select w-[100px] bg-transparent ${
+                        className={`select w-[100px] bg-[#27242D] ${
                           user.status === "Active"
-                            ? "border-green-400 text-green-400"
+                            ? "border-[#267A39] text-[#CBCCD2] font-medium"
                             : user.status === "Hold"
-                            ? "border-yellow-400 text-yellow-400"
-                            : "border-blue-400 text-blue-400"
+                            ? "border-[#88611A] text-[#CBCCD2] font-medium"
+                            : "border-[#193682] text-[#CBCCD2] font-medium"
                         }`}
                       >
-                        <option className="text-black">Active</option>
-                        <option className="text-black">Hold</option>
-                        <option className="text-black">Action</option>
+                        <option className="text-[#CBCCD2]">Active</option>
+                        <option className="text-[#CBCCD2]">Hold</option>
+                        <option className="text-[#CBCCD2]">Action</option>
                       </select>
                       <button className="btn border border-[#193682] bg-transparent shadow-none text-red-600">
                         <FaTrashCan size={16} />
@@ -299,7 +290,7 @@ const UserManagement = () => {
         </div>
       )}
 
-      {/* Add a Business Category Modal (First Image) */}
+      {/* Add a Business Category Modal */}
       {isAddBusinessModalOpen && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50"
@@ -331,7 +322,9 @@ const UserManagement = () => {
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value)}
                   className="input w-full bg-[#27242D] text-white placeholder-gray-500"
-                  placeholder="Ex. Car business, drinks, beverage"
+                  placeholder="Ex. Car business, drinks, beverage
+
+"
                 />
                 <button
                   onClick={handleAddCategory}

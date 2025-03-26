@@ -9,8 +9,8 @@ const Navbar = () => {
   };
 
   return (
-   <section className='bg-[#17141D]'>
-     <nav className=" text-white p-4 container mx-auto">
+   <section className='bg-[#17141D] sticky top-0 z-100 shadow-md shadow-gray-800/90'>
+     <nav className=" text-white py-3 container mx-auto">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center space-x-2">
