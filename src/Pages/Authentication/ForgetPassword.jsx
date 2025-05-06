@@ -26,9 +26,6 @@ const ForgetPassword = () => {
       console.log("email verification error", error)
     }
 
-    
-
-
   };
 
   return (
@@ -57,9 +54,6 @@ const ForgetPassword = () => {
               />
             </div>
           </div>
-
-
-       
 
           {/* Register Button */}
          <div className="flex justify-center">

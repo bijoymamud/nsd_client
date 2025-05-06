@@ -50,6 +50,26 @@ export const baseApi = createApi({
             })
         }),
 
+        //otp verification
+        otpVerification: builder.mutation({
+            query: ({otp, email})=>({
+                url: "api/auth/otp/verify/",
+                method: "POST",
+                body: {otp, email}
+            })
+        }), 
+
+        //resetpass
+        resetPass: builder.mutation({
+            query: (payload)=>({
+                url: "api/auth/password-reset/confirm/",
+                method: "POST",
+                body: payload 
+            })
+        }),
+
+
+
 
     })
 })
@@ -66,5 +86,11 @@ export const {
 
     //otp creation
     useOtpCreateMutation,
+
+    //otp verification
+    useOtpVerificationMutation,
+
+    //reset pass
+    useResetPassMutation,
 
 } = baseApi

@@ -60,46 +60,60 @@
 // export default OTPVerification;
 import React, { useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useOtpVerificationMutation } from "../redux/features/baseApi/baseApi";
+import { useNavigate } from "react-router-dom";
 
 const OTPVerification = () => {
   const { register, handleSubmit, setValue, getValues, watch } = useForm({
     defaultValues: {
-      otp: Array(6).fill(""), // 6-digit OTP
+      otp: Array(6).fill(""), 
     },
   });
+  const navigate = useNavigate();
+  const [otpVerification, {isLoading}] = useOtpVerificationMutation()
 
-  const otpLength = 4; // Number of OTP digits
-  const inputRefs = useRef([]); // Refs for each input field
+  const otpLength = 6; 
+  const inputRefs = useRef([]); 
 
-  // Watch the OTP values to combine them for submission
   const otpValues = watch("otp");
 
   // Handle form submission
   const onSubmit = (data) => {
-    const otp = data.otp.join(""); // Combine OTP digits into a single string
+    const otp = data.otp.join("");
     console.log("Submitted OTP:", otp);
+    
+    
+    localStorage.setItem("otp", otp);
+    const email = localStorage.getItem("verified_email")
+  
+
+    try {
+      const response = otpVerification({email:email, otp:otp}).unwrap();
+      console.log('otp_verification', response);
+
+      setTimeout(()=>{
+        navigate("/reset_password")
+      } ,[2000])
+      
+    } catch (error) {
+      console.log("Otp verification error")
+    }
   };
 
-  // Handle input change for each digit
   const handleInputChange = (index, value) => {
     if (/^[0-9]?$/.test(value)) {
-      // Only allow numbers (0-9) or empty string
       const newOtp = [...otpValues];
       newOtp[index] = value;
       setValue("otp", newOtp);
 
-      // Move to the next input if a digit is entered
       if (value && index < otpLength - 1) {
         inputRefs.current[index + 1].focus();
       }
     }
   };
 
-  // Handle key down events (e.g., backspace)
   const handleKeyDown = (index, e) => {
     if (e.key === "Backspace" && !otpValues[index] && index > 0) {
-      // Move to the previous input on backspace if the current input is empty
       inputRefs.current[index - 1].focus();
     }
   };
@@ -108,21 +122,18 @@ const OTPVerification = () => {
   const handlePaste = (e) => {
     const pastedData = e.clipboardData.getData("text").trim();
     if (/^\d{6}$/.test(pastedData)) {
-      // If the pasted data is a 6-digit number
       const newOtp = pastedData.split("").slice(0, otpLength);
       setValue("otp", newOtp);
-      inputRefs.current[otpLength - 1].focus(); // Focus on the last input
+      inputRefs.current[otpLength - 1].focus(); 
     }
   };
 
-  // Auto-focus the first input on component mount
   useEffect(() => {
     inputRefs.current[0].focus();
   }, []);
 
   return (
     <div className="flex min-h-screen justify-center items-center bg-[#1B1424]">
-      {/* Left Section - Form */}
       <div className="w-full md:w-1/2 min-h-screen flex flex-col justify-center items-center p-6 md:p-10">
         <img
           src="https://i.ibb.co/3YMJWXhQ/Nexus-Vision-LOGO-Aadf-2-1.png"
@@ -170,14 +181,14 @@ const OTPVerification = () => {
 
           {/* Continue Button */}
           <div className="flex justify-center w-full">
-  <Link to="/reset_password" className="w-3/4">
+  <div className="w-3/4">
     <button
       type="submit"
       className="w-full bg-gradient-to-t from-[#2B3069] to-[#881CA2] font-medium p-3 rounded-md mt-3 text-[#CECBED] text-center"
     >
       Continue
     </button>
-  </Link>
+  </div>
 </div>
 
         </form>
