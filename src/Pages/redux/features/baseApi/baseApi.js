@@ -40,6 +40,17 @@ export const baseApi = createApi({
         loggedinUserInfo: builder.query({
            query: ()=> "api/auth/profile/"
         }),
+
+        //forgetpass
+        otpCreate: builder.mutation({
+            query: (email)=>({
+                url: "api/auth/otp/create/",
+                method: "POST",
+                body: email
+            })
+        }),
+
+
     })
 })
 
@@ -52,5 +63,8 @@ export const {
     useCreateUserMutation,
     useUserLoinMutation,
     useLoggedinUserInfoQuery,
+
+    //otp creation
+    useOtpCreateMutation,
 
 } = baseApi
