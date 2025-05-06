@@ -14,7 +14,7 @@ const Register = () => {
   const [createUser] = useCreateUserMutation();
 
   const onSubmit = async (userData) => {
-    console.log(userData);
+    // console.log(userData);
 
     // const payload = {
     //   userData: userData,
@@ -23,7 +23,7 @@ const Register = () => {
 
     try {
       const response = await createUser(userData).unwrap();
-      console.log('API Response:', response);
+      // console.log('API Response:', response);
       toast.success('Registration successful!');
       
       setTimeout( ()=>{
@@ -31,7 +31,7 @@ const Register = () => {
       }, 3000)
       
     } catch (error) {
-      console.log('Error:', error);
+      // console.log('Error:', error);
       toast.error(error?.data?.email?.[0] || 'An error occurred during registration');
     }
   };

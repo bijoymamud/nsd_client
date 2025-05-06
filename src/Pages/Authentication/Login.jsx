@@ -11,7 +11,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate()
-  const [userLoin, {isLoading}] = useUserLoinMutation()
+  const [userLoin] = useUserLoinMutation()
 
   const onSubmit = async(loginData) => {
     console.log(loginData);
@@ -19,7 +19,12 @@ const Login = () => {
     try {
       const response = await userLoin(loginData).unwrap();
       console.log("login-response", response);
+
+      localStorage.setItem("access_token", response?.access_token);
+      localStorage.setItem("refresh_token", response?.refresh_token);
+      
       toast.success("Login Successful");
+
 
       setTimeout( ()=>{
         navigate("/");  
