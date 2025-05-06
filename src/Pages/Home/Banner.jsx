@@ -1,67 +1,39 @@
-import React from 'react'
-import { BsGraphUp } from 'react-icons/bs';
-import {IoSettingsOutline } from 'react-icons/io5';
-import { LuBrainCircuit } from 'react-icons/lu';
+
+import React from 'react';
+import bannerMotion from "../../assets/bannerMotion.json"
+import Lottie from 'lottie-react';
 
 const Banner = () => {
 
-    const features = [
-        {
-          title: "Data-Driven Insights",
-          description:
-            "Analyze complex data to uncover valuable trends and opportunities for your business.",
-          icon: <BsGraphUp />, 
-        },
-        {
-          title: "Smart Decision-Making",
-          description:
-            "Use real-time analytics to make informed and strategic business decisions.",
-          icon: <LuBrainCircuit />,
-        },
-        {
-          title: "Optimized Performance",
-          description:
-            "Improve efficiency and drive growth with data-backed solutions tailored to your needs.",
-          icon: <IoSettingsOutline  />,
-        },
-      ];
 
   return (
-    <section className='bg-[#17141D] h-[120vh] flex flex-col justify-center items-center'>
-      <div className='container mx-auto text-white'>
-    <div className='flex items-center justify-between'>
-        <div>
-        <h1 className='text-[42px] font-bold '>Embrace the Future Today</h1>
-      <p className='text-[20px] '>Unlock the power of data and see the future today. <br /> 
-      Transform insights into action for smarter decisions.</p>
-      <button className='bg-gradient-to-r from-[#2C3069] to-[#BB12C0] py-2 px-4 rounded-md text-white mt-10'>Get Started Now</button>
-        </div>
+    <section className="bg-[#17141D] min-h-[85vh] flex flex-col justify-center items-center px-4">
+      <div className="container mx-auto text-white py-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="text-center md:text-left">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 ">Embrace the Future Today</h1>
+            <p className="text-lg md:text-xl mb-6 w-full mx-auto ">
+            Optimize every aspect of your restaurant with AI—automate inventory, <br /> forecast demand, streamline staffing, and personalize the customer experience. <br /> Reduce costs, boost efficiency, and make smarter decisions in real time.
+            </p>
+            <button className="bg-gradient-to-r from-[#2C3069] to-[#BB12C0] py-2 px-6 rounded-md text-white font-semibold">
+              Get Started Now
+            </button>
+          </div>
+          <div className="w-full md:w-1/2 flex justify-center">
+            <img
+              src="https://i.ibb.co.com/fGzJG8g6/Group-1686551098.png"
+              alt="banner"
+              className="w-full max-w-md h-auto"
+            />
 
-        <div>
-            <img src="https://i.ibb.co.com/fGzJG8g6/Group-1686551098.png" alt="banner" />
+{/* <Lottie animationData={bannerMotion} loop={true} /> */}
+          </div>
         </div>
-    </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-20 py-10'>
-      {features.map((feature, index) => (
-        <div
-          key={index}
-          className="bg-[#251727] p-6 rounded-xl shadow-lg text-center w-80 "
-        >
-          <h3 className="text-[24px] font-bold text-white">{feature.title}</h3>
-      
-          <p className="w-14 h-14 text-3xl text-[#DF5EFF] mb-4 my-3 bg-[#342136] rounded-full flex mx-auto items-center justify-center ">
-  {feature.icon}
-</p>
-
-       
-          <p className="text-sm text-gray-400 mt-2">{feature.description}</p>
-        </div>
-      ))}
-      </div>
+   
     </section>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;

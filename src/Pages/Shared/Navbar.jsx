@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLoggedinUserInfoQuery } from '../redux/features/baseApi/baseApi';
 import { FaRegUser } from 'react-icons/fa';
 import { BiCategory } from 'react-icons/bi';
+import { MdOutlineArrowRightAlt } from 'react-icons/md';
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate()
+  
   const {data: loggedInUser} = useLoggedinUserInfoQuery();
   console.log(loggedInUser)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  //logout
+
+  const handleLogOut = () =>{
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token")
+
+
+    toast.success("Logout Successful");
+    setTimeout(() => {
+      navigate("/login")
+    }, 2000);
+  }
 
   return (
    <section className='bg-[#17141D] sticky top-0 z-50 shadow-md shadow-gray-800/90'>
@@ -75,7 +93,7 @@ const Navbar = () => {
 <div className="dropdown dropdown-end bg-black">
 <div tabIndex={0} role="button" >
 <div>
-          <img src="https://teamjapanese.com/wp-content/uploads/2022/03/boy-in-japanese.jpg" alt="user image" className='h-14 w-14 rounded-full object-cover' />
+          <img src="https://teamjapanese.com/wp-content/uploads/2022/03/boy-in-japanese.jpg" alt="user image" className='h-12 w-12 rounded-full object-cover' />
         </div> 
 </div>
 <ul tabIndex={0} className="dropdown-content menu bg-[#1f1b24] mt-2 rounded-xl z-[1] w-48 p-2 shadow-lg border border-white/10 text-white">
@@ -92,10 +110,11 @@ const Navbar = () => {
     </button>
   </li>
   <li>
-    <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition text-red-400 hover:text-red-300">
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7" />
-      </svg>
+    <button 
+    onClick={handleLogOut}
+    className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition text-red-400 hover:text-red-300">
+    <MdOutlineArrowRightAlt  size={20} className=''/>
+
       Logout
     </button>
   </li>
@@ -129,6 +148,19 @@ const Navbar = () => {
      
       </div>
     </nav>
+
+      <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            style={{ zIndex: 9999 }}
+          />
    </section>
   );
 };

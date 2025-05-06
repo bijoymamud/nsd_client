@@ -28,7 +28,7 @@ const Register = () => {
       
       setTimeout( ()=>{
         navigate("/login");  
-      }, 3000)
+      }, 2000)
       
     } catch (error) {
       // console.log('Error:', error);
@@ -155,7 +155,7 @@ const Register = () => {
    
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
