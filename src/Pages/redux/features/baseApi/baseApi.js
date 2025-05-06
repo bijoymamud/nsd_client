@@ -59,6 +59,15 @@ export const baseApi = createApi({
             })
         }), 
 
+        //resend pass
+        resendPass: builder.mutation({
+            query:(email)=>({
+                url: "api/auth/password-reset/request/",
+                method: "POST",
+                body: email
+            })
+        }),
+
         //resetpass
         resetPass: builder.mutation({
             query: (payload)=>({
@@ -92,5 +101,8 @@ export const {
 
     //reset pass
     useResetPassMutation,
+
+    //resend pass
+    useResendPassMutation,
 
 } = baseApi
