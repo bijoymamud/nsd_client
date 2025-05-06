@@ -14,7 +14,7 @@ import { LuNotepadText } from "react-icons/lu";
 import { ImQuestion } from "react-icons/im";
 import { FaRegUser } from "react-icons/fa";
 
-const USER_ROLE = "admin"; 
+const USER_ROLE = "user"; 
 
 export default function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);

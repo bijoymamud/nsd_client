@@ -9,7 +9,7 @@ const Navbar = () => {
   };
 
   return (
-   <section className='bg-[#17141D] sticky top-0 z-100 shadow-md shadow-gray-800/90'>
+   <section className='bg-[#17141D] sticky top-0 z-50 shadow-md shadow-gray-800/90'>
      <nav className=" text-white py-3 container mx-auto">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
@@ -61,13 +61,22 @@ const Navbar = () => {
         </div>
 
         {/* Login Button */}
-        <div className="hidden md:block">
+        <div className="hidden md:block space-x-2">
       <Link to="/login">
       <button
     className="bg-gradient-to-r from-[#2C3069] to-[#BB12C0] py-2 px-10 rounded-[8px] text-white font-semibold"
     aria-expanded={isOpen}
   >
     Login
+  </button>
+      </Link>
+
+      <Link to="/registration">
+      <button
+    className="bg-gradient-to-r from-[#2C3069] to-[#BB12C0] py-2 px-10 rounded-[8px] text-white font-semibold"
+    aria-expanded={isOpen}
+  >
+    Sign Up
   </button>
       </Link>
         </div>
