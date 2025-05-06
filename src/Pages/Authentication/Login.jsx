@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaLock } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserLoinMutation } from "../redux/features/baseApi/baseApi";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate()
+  const [userLoin, {isLoading}] = useUserLoinMutation()
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async(loginData) => {
+    console.log(loginData);
+
+    try {
+      const response = await userLoin(loginData).unwrap();
+      console.log("login-response", response);
+      toast.success("Login Successful");
+
+      setTimeout( ()=>{
+        navigate("/");  
+      }, 3000)
+
+    } catch (error) {
+      console.log('Error:', error);
+      toast.error(error?.data?.non_field_errors?.[0] || 'An error occurred during registration');
+    }
+
   };
 
   return (
@@ -44,15 +65,26 @@ const Login = () => {
             <label className="block text-sm text-[#CECBED] mb-2">Password</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <FaLock className="text-[#CECBED]" size={18} />
+                <FaLock className="text-[#CECBED] opacity-60" size={18} />
               </span>
               <input
                 {...register("password")}
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                className="w-full p-3 pl-10 text-[14px] bg-[#1B1424] text-[#CECBED] border border-gray-600 rounded-md outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full p-3 pl-10 pr-10 text-[14px] bg-[#1B1424] text-[#CECBED] border border-gray-600 rounded-md outline-none focus:ring-2 focus:ring-purple-500"
                 autoComplete="off"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
+              >
+                {showPassword ? (
+                  <FaEyeSlash className="text-[#CECBED] opacity-60" size={18} />
+                ) : (
+                  <FaEye className="text-[#CECBED] opacity-60" size={18} />
+                )}
+              </button>
             </div>
           </div>
 
@@ -66,8 +98,8 @@ const Login = () => {
        
 
           {/* Register Button */}
-          <Link 
-          to="/"
+          <div 
+          
           className="flex justify-center">
             <button
               type="submit"
@@ -75,7 +107,7 @@ const Login = () => {
             >
               Login
             </button>
-          </Link>
+          </div>
         </form>
 
            {/* Login Redirect */}
@@ -103,6 +135,22 @@ const Login = () => {
         />
         <p className="text-[#CECBED]"> Future-Proof Your Business with Smart Analytics</p>
       </div>
+
+
+      {/* //for toast */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{ zIndex: 9999 }}
+      />
+   
     </div>
   );
 };

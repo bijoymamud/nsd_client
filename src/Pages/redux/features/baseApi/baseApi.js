@@ -16,7 +16,17 @@ export const baseApi = createApi({
                 method: "POST",
                 body: userData
             })
-        })
+        }),
+
+        //login user
+        userLoin: builder.mutation({
+            query: (loginData)=>({
+                url: "api/auth/login/",
+                method: "POST",
+                body: loginData
+            })
+        }),
+
     })
 })
 
@@ -25,6 +35,8 @@ export const baseApi = createApi({
 
 export const {
 
+    // authentication
     useCreateUserMutation,
+    useUserLoinMutation,
 
 } = baseApi
