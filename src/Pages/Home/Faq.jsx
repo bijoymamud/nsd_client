@@ -17,8 +17,8 @@ export default function Faq() {
   };
 
   return (
-    <div className=" bg-[#17141D] flex items-center justify-center pb-32">
-      <div className="container mx-auto px-4 py-8 md:py-12 container">
+    <div className=" bg-[#17141D] flex items-center justify-center pb-10 md:pb-32">
+      <div className="container mx-auto px-4 py-8 md:py-12 ">
         <div className="text-center mb-8 md:mb-12">
           <h1 className="text-2xl md:text-4xl font-bold mb-4 text-white ">
             Frequently Asked Questions

@@ -41,7 +41,7 @@ const Navbar = () => {
         </div>
 
         {/* Hamburger Menu for Mobile */}
-        <div className="md:hidden">
+        <div className="md:hidden me-2">
           <button onClick={toggleMenu} className="focus:outline-none">
             <svg
               className="w-6 h-6"

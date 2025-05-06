@@ -7,39 +7,9 @@ const Packages = () => {
   return (
 <section className="bg-[#17141D]">
 <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="container p-10 py-20 w-full ">
+      <div className="container md:p-10 py-10 md:py-20 w-full ">
         <h2 className="text-3xl text-white  font-semibold text-center mb-8">Packages</h2>
 
-{/*    
-        <div className="flex justify-center mb-12">
-          <div className="relative inline-flex bg-gray-300  rounded-full p-1">
-
-            <div className="relative flex">
-  
-              <span
-                className={`absolute top-0 h-full w-1/2 bg-gray-500  rounded-full transition-transform duration-300 ease-in-out ${
-                  billingCycle === "monthly" ? "translate-x-0" : "translate-x-full"
-                }`}
-              ></span>
-
-              
-              <button
-                className="relative z-10 px-4 py-2 text-white font-medium w-24 text-center"
-                onClick={() => setBillingCycle("monthly")}
-              >
-                Monthly
-              </button>
-
-          
-              <button
-                className="relative z-10 px-4 py-2 text-white  font-medium w-24 text-center"
-                onClick={() => setBillingCycle("yearly")}
-              >
-                Yearly
-              </button>
-            </div>
-          </div>
-        </div> */}
 
         {/* Pricing cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-20">
